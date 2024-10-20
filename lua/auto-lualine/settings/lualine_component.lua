@@ -40,7 +40,11 @@ local mode_map = {
   ["O-PENDING"] = "O",
 }
 
+local show_mode = ""
 return {
+  setShowMode = function(str)
+    show_mode = str
+  end,
   -- treesitter info
   treesitter = {
     function()
@@ -203,13 +207,13 @@ return {
     padding = 1,
     separator = { left = " " },
     fmt = function(str)
-      if pcode.show_mode == 1 then
+      if show_mode == 1 then
         return icons.Neovim .. " " .. (mode_map[str] or str)
-      elseif pcode.show_mode == 2 then
+      elseif show_mode == 2 then
         return icons.Neovim
-      elseif pcode.show_mode == 3 then
+      elseif show_mode == 3 then
         return (mode_map[str] or str)
-      elseif pcode.show_mode == 4 then
+      elseif show_mode == 4 then
         return nil
       else
         return icons.Neovim .. " " .. str
@@ -221,13 +225,13 @@ return {
     padding = 1,
     separator = { left = " ", right = "" },
     fmt = function(str)
-      if pcode.show_mode == 1 then
+      if show_mode == 1 then
         return icons.Neovim .. " " .. str:sub(1, 1)
-      elseif pcode.show_mode == 2 then
+      elseif show_mode == 2 then
         return icons.Neovim
-      elseif pcode.show_mode == 3 then
+      elseif show_mode == 3 then
         return str:sub(1, 1)
-      elseif pcode.show_mode == 4 then
+      elseif show_mode == 4 then
         return nil
       else
         return icons.Neovim .. " " .. str
@@ -239,13 +243,13 @@ return {
     padding = 1,
     separator = { left = " ", right = "" },
     fmt = function(str)
-      if pcode.show_mode == 1 then
+      if show_mode == 1 then
         return icons.ui.Neovim .. " " .. (mode_map[str] or str)
-      elseif pcode.show_mode == 2 then
+      elseif show_mode == 2 then
         return icons.ui.Neovim
-      elseif pcode.show_mode == 3 then
+      elseif show_mode == 3 then
         return (mode_map[str] or str)
-      elseif pcode.show_mode == 4 then
+      elseif show_mode == 4 then
         return nil
       else
         return icons.ui.Neovim .. " " .. str
@@ -257,13 +261,13 @@ return {
     padding = 1,
     separator = { left = " ", right = "" },
     fmt = function(str)
-      if pcode.show_mode == 1 then
+      if show_mode == 1 then
         return icons.Neovim .. " " .. (mode_map[str] or str)
-      elseif pcode.show_mode == 2 then
+      elseif show_mode == 2 then
         return icons.Neovim
-      elseif pcode.show_mode == 3 then
+      elseif show_mode == 3 then
         return (mode_map[str] or str)
-      elseif pcode.show_mode == 4 then
+      elseif show_mode == 4 then
         return nil
       else
         return icons.Neovim .. " " .. str
@@ -276,13 +280,13 @@ return {
     padding = 1,
     separator = { left = " " },
     fmt = function(str)
-      if pcode.show_mode == 1 then
+      if show_mode == 1 then
         return icons.Neovim .. " " .. (mode_map[str] or str)
-      elseif pcode.show_mode == 2 then
+      elseif show_mode == 2 then
         return icons.Neovim
-      elseif pcode.show_mode == 3 then
+      elseif show_mode == 3 then
         return (mode_map[str] or str)
-      elseif pcode.show_mode == 4 then
+      elseif show_mode == 4 then
         return nil
       else
         return icons.Neovim .. " " .. str

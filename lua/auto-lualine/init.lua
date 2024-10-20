@@ -1,11 +1,30 @@
 local M = {}
+_G.switch = function(param, case_table)
+  local case = case_table[param]
+  if case then
+    return case()
+  end
+  local def = case_table["default"]
+  return def and def() or nil
+end
+
 local component = require("auto-lualine.settings.lualine_component")
 local colors = component.colors
 
 -- check config for theme
 local set_theme = "auto"
 local bubbles_theme
-local color = pcode.colorscheme
+local color = "auto"
+local theme_option = "rounded"
+M.setColorscheme = function(scheme)
+  color = scheme
+end
+M.setTheme = function(theme)
+  theme_option = theme
+end
+M.setShowMode = function(mode)
+  component.setShowMode(mode)
+end
 switch(color, {
   ["tokyonight"] = function()
     set_theme = "auto"
@@ -70,7 +89,6 @@ if set_theme == "auto" then
 end
 
 local gettheme = require("auto-lualine.settings.lualine_template")
-local theme_option = pcode.lualinetheme or "rounded"
 local theme = gettheme.rounded(bubbles_theme)
 if theme_option == "rounded" then
   theme = gettheme.rounded(bubbles_theme)
