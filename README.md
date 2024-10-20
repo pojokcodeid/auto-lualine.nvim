@@ -9,8 +9,8 @@
 ![home!](square.png)
 ### transparant
 ![home!](transparant.png)
-### transparant
-![home!](transparant.png)
+### triangle
+![home!](triangle.png)
 ### default
 ![home!](default.png)
 # auto-lsp.nvim
