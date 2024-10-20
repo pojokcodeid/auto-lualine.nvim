@@ -60,21 +60,31 @@ return {
 
   codeium = {
     function()
-      local codeium = all_trim(vim.api.nvim_call_function("codeium#GetStatusString", {}))
-      if codeium then
-        if codeium == "OFF" then
-          return icons.CopilotOff
+      local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
+      if status then
+        local codeium = all_trim(result)
+        if codeium then
+          if codeium == "OFF" then
+            return icons.CopilotOff
+          else
+            return icons.Copilot
+          end
         else
-          return icons.Copilot
+          return ""
         end
       else
         return ""
       end
     end,
     color = function()
-      local codeium = all_trim(vim.api.nvim_call_function("codeium#GetStatusString", {}))
-      if codeium then
-        return { fg = codeium == "OFF" and "#3E4452" or "#98C379" }
+      local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
+        if status then
+        local codeium = all_trim(result)
+        if codeium then
+          return { fg = codeium == "OFF" and "#3E4452" or "#98C379" }
+        else
+          return {}
+        end
       else
         return {}
       end
