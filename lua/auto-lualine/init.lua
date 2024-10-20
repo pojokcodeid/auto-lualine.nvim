@@ -16,11 +16,14 @@ local set_theme = "auto"
 local bubbles_theme
 local color = "auto"
 local theme_option = "rounded"
+M.setTheme = function(theme)
+  set_theme = theme
+end
 M.setColorscheme = function(scheme)
   color = scheme
 end
-M.setTheme = function(theme)
-  theme_option = theme
+M.setThemeOption = function(option)
+  theme_option = option
 end
 M.setShowMode = function(mode)
   component.setShowMode(mode)
