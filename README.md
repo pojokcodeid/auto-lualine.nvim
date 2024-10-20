@@ -1,3 +1,5 @@
+## preview
+![home!](img.png)
 # auto-lsp.nvim
 - auto-lualine.nvim is an automatic configuration for lualine.nvim
 # Instalation
