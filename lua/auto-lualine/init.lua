@@ -8,18 +8,15 @@ _G.switch = function(param, case_table)
   return def and def() or nil
 end
 
-local component = require("auto-lualine.settings.lualine_component")
-local colors = component.colors
-
--- check config for theme
-local set_theme = "auto"
-local bubbles_theme
-local color = "auto"
-local theme_option = "rounded"
-M.setup = function(setColor,setOption, setMode)
-  color=setColor
-  theme_option = setOption
-  component.setShowMode(setMode)
+M.setup = function(opts)
+  -- check config for theme
+  local component = require("auto-lualine.settings.lualine_component")
+  local colors = component.colors
+  local set_theme = "auto"
+  local bubbles_theme
+  local color = opts.setColor or "auto"
+  local theme_option = opts.setOption or "rounded"
+  component.setShowMode(opts.setMode or 0)
   switch(color, {
     ["tokyonight"] = function()
       set_theme = "auto"
@@ -77,12 +74,12 @@ M.setup = function(setColor,setOption, setMode)
       set_theme = "auto"
     end,
   })
-  
+
   bubbles_theme = component.bubbles_theme(colors)
   if set_theme == "auto" then
     bubbles_theme = vim.fn.fnamemodify("auto", ":t")
   end
-  
+
   local gettheme = require("auto-lualine.settings.lualine_template")
   local theme = gettheme.rounded(bubbles_theme)
   if theme_option == "rounded" then
