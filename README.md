@@ -40,7 +40,7 @@ return {
       -- darcula-dark
       -- juliana
       -- Eva-Dark, Eva-Dark-Italic, Eva-Dark-Bold
-      local color = "auto"
+      local color = pcode.colorscheme or "auto"
       -- rounded
       -- roundedall
       -- square
@@ -48,14 +48,18 @@ return {
       -- parallelogram
       -- transparent
       -- default
-      local options = "roundedall"
+      local options = pcode.lualinetheme or "roundedall"
       -- 0 = on full text mode info,
       -- 1 = on initial mode + logo
       -- 2 = logo only
       -- 3 = initial only
       -- 4 = off
-      local show_mode = 0
-      lualine.setup(color, options, show_mode)
+      local show_mode = pcode.show_mode or 0
+      lualine.setup({
+        setColor = color,
+        setOption = options,
+        setMode = show_mode,
+      })
     end,
   },
 }
