@@ -12,7 +12,7 @@ local component = require("auto-lualine.settings.lualine_component")
 local colors = component.colors
 
 -- check config for theme
-local set_theme = "auto"
+local set_theme = "bubbles_theme"
 local bubbles_theme
 local color = "auto"
 local theme_option = "rounded"
