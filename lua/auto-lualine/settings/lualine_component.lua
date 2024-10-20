@@ -48,7 +48,6 @@ return {
   -- treesitter info
   treesitter = {
     function()
-      -- return icons.ui.Paint .. " TS"
       return icons.Tree
     end,
     color = function()
@@ -244,15 +243,15 @@ return {
     separator = { left = " ", right = "" },
     fmt = function(str)
       if show_mode == 1 then
-        return icons.ui.Neovim .. " " .. (mode_map[str] or str)
+        return icons.Neovim .. " " .. (mode_map[str] or str)
       elseif show_mode == 2 then
-        return icons.ui.Neovim
+        return icons.Neovim
       elseif show_mode == 3 then
         return (mode_map[str] or str)
       elseif show_mode == 4 then
         return nil
       else
-        return icons.ui.Neovim .. " " .. str
+        return icons.Neovim .. " " .. str
       end
     end,
   },
