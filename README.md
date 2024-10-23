@@ -1,22 +1,41 @@
 ## preview
+
 ### roundedall
+
 ![home!](img.png)
+
 ### rounded
+
 ![home!](rounded.png)
+
 ### paralelgram
+
 ![home!](paralelgram.png)
+
 ### square
+
 ![home!](square.png)
+
 ### transparant
+
 ![home!](transparant.png)
+
 ### triangle
+
 ![home!](triangle.png)
+
 ### default
+
 ![home!](default.png)
+
 # auto-lsp.nvim
+
 - auto-lualine.nvim is an automatic configuration for lualine.nvim
+
 # Instalation
+
 - Lazy
+
 ```lua
 return {
   {
@@ -54,6 +73,7 @@ return {
       -- 2 = logo only
       -- 3 = initial only
       -- 4 = off
+      -- 5 = icon
       local show_mode = pcode.show_mode or 0
       lualine.setup({
         setColor = color,

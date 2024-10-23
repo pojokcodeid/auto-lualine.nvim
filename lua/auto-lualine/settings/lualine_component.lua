@@ -40,6 +40,15 @@ local mode_map = {
   ["O-PENDING"] = "O",
 }
 
+local mode_icon = {
+  ["NORMAL"] = "",
+  ["INSERT"] = "",
+  ["VISUAL"] = "",
+  ["REPLACE"] = "",
+  ["COMMAND"] = "",
+  ["O-PENDING"] = "󰌚",
+}
+
 local show_mode = ""
 return {
   setShowMode = function(str)
@@ -78,7 +87,7 @@ return {
     end,
     color = function()
       local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
-        if status then
+      if status then
         local codeium = all_trim(result)
         if codeium then
           return { fg = codeium == "OFF" and "#3E4452" or "#98C379" }
@@ -224,6 +233,8 @@ return {
         return (mode_map[str] or str)
       elseif show_mode == 4 then
         return nil
+      elseif show_mode == 5 then
+        return (mode_icon[str] or str)
       else
         return icons.Neovim .. " " .. str
       end
