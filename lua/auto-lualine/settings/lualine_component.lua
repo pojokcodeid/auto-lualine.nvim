@@ -253,6 +253,8 @@ return {
         return str:sub(1, 1)
       elseif show_mode == 4 then
         return nil
+      elseif show_mode == 5 then
+        return (mode_icon[str] or str)
       else
         return icons.Neovim .. " " .. str
       end
@@ -271,6 +273,8 @@ return {
         return (mode_map[str] or str)
       elseif show_mode == 4 then
         return nil
+      elseif show_mode == 5 then
+        return (mode_icon[str] or str)
       else
         return icons.Neovim .. " " .. str
       end
@@ -289,6 +293,8 @@ return {
         return (mode_map[str] or str)
       elseif show_mode == 4 then
         return nil
+      elseif show_mode == 5 then
+        return (mode_icon[str] or str)
       else
         return icons.Neovim .. " " .. str
       end
@@ -308,6 +314,8 @@ return {
         return (mode_map[str] or str)
       elseif show_mode == 4 then
         return nil
+      elseif show_mode == 5 then
+        return (mode_icon[str] or str)
       else
         return icons.Neovim .. " " .. str
       end
