@@ -1,5 +1,6 @@
 return {
-  Tree = "",
+  -- Tree = "",
+  Tree = "",
   Copilot = "",
   CopilotOff = "",
   Gear = "",
