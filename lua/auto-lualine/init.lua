@@ -15,6 +15,9 @@ M.setup = function(opts)
   local set_theme = "auto"
   local bubbles_theme
   local color = opts.setColor or "auto"
+  if color == "auto" then
+    color = vim.g.colors_name
+  end
   local theme_option = opts.setOption or "rounded"
   component.setShowMode(opts.setMode or 0)
   switch(color, {
