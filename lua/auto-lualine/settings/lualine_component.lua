@@ -1,6 +1,6 @@
-_G.all_trim = function(s)
+--[[ _G.all_trim = function(s)
   return s:match("^%s*(.-)%s*$")
-end
+end ]]
 
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 75
@@ -71,7 +71,8 @@ return {
     function()
       local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
       if status then
-        local codeium = all_trim(result)
+        -- local codeium = all_trim(result)
+        local codeium = result
         if codeium then
           if codeium == "OFF" then
             return icons.CopilotOff
@@ -88,7 +89,8 @@ return {
     color = function()
       local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
       if status then
-        local codeium = all_trim(result)
+        -- local codeium = all_trim(result)
+        local codeium = result
         if codeium then
           return { fg = codeium == "OFF" and "#3E4452" or "#98C379" }
         else
