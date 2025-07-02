@@ -32,6 +32,7 @@ M.filetype = {
   "mysql",
   "dbui",
   "dbout",
+  "keymaps_table",
 }
 
 M.rounded = function(colorscheme)
