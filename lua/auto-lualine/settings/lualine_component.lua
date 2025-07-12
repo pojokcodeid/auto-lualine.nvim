@@ -86,9 +86,9 @@ return {
       if status then
         local cod, server_status = neocodeium.get_status()
         if cod == 0 then
-          return { fg = codeium == "OFF" and "#3E4452" or "#98C379" }
+          return { fg = "#98C379" }
         else
-          return {}
+          return { fg = "#3E4452" }
         end
       else
         return {}
