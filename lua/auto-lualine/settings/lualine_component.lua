@@ -83,7 +83,17 @@ return {
           return ""
         end
       else
-        return ""
+        local sts_newcodeium, out = pcall(require, "newcodeium")
+        if sts_newcodeium then
+          local status, server_status = out.get_status()
+          if status == 0 then
+              return icons.Copilot
+          else
+              return icons.CopilotOff
+          end
+        else
+          return ""
+        end
       end
     end,
     color = function()
