@@ -69,26 +69,32 @@ return {
 
   codeium = {
     function()
-      local status, result = pcall(require, "neocodeium")
+      local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
       if status then
-        local cod, server_status = neocodeium.get_status()
-        if cod == 0 then
-          return icons.Copilot
+        -- local codeium = all_trim(result)
+        local codeium = result
+        if codeium then
+          if codeium == "OFF" then
+            return icons.CopilotOff
+          else
+            return icons.Copilot
+          end
         else
-          return icons.CopilotOff
+          return ""
         end
       else
         return ""
       end
     end,
     color = function()
-      local status, result = pcall(require, "neocodeium")
+      local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
       if status then
-        local cod, server_status = neocodeium.get_status()
-        if cod == 0 then
-          return { fg = "#98C379" }
+        -- local codeium = all_trim(result)
+        local codeium = result
+        if codeium then
+          return { fg = codeium == "OFF" and "#3E4452" or "#98C379" }
         else
-          return { fg = "#3E4452" }
+          return {}
         end
       else
         return {}
