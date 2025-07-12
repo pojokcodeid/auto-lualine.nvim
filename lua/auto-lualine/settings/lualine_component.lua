@@ -98,7 +98,8 @@ return {
     end,
     color = function()
       local status, result = pcall(vim.api.nvim_call_function, "codeium#GetStatusString", {})
-      if status then
+      local sts_neocodeium, _ = require("neocodeium").get_status()
+      if status or sts_neocodeium then
         -- local codeium = all_trim(result)
         local codeium = result
         if codeium then
