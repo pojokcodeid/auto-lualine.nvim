@@ -10,7 +10,7 @@ local get_branch = component.get_branch
 local lsp_progress = {}
 local data_ok, lspprogress = pcall(require, "lsp-progress")
 if data_ok then
-  lsp_progress = lspprogress.progress
+  lsp_progress = lspprogress.progress()
 end
 local codeium = component.codeium
 
