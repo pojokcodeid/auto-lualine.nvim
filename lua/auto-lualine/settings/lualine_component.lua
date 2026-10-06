@@ -205,6 +205,14 @@ return {
     "diagnostics",
     sources = { "nvim_diagnostic" },
     sections = { "error", "warn" },
+    on_click = function()
+      local qf_open = vim.fn.getqflist({ winid = 0 }).winid ~= 0
+      if qf_open then
+        vim.cmd("cclose")
+      else
+        vim.diagnostic.setqflist({ open = true })
+      end
+    end,
     symbols = {
       error = icons.BoldError .. " ",
       warn = icons.BoldWarning .. " ",
