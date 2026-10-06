@@ -50,6 +50,27 @@ local mode_icon = {
 }
 
 local show_mode = ""
+
+-- lacak buffer terakhir
+local last_buf = vim.api.nvim_get_current_buf()
+
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+  callback = function(args)
+    local bt = vim.bo[args.buf].buftype
+    -- abaikan quickfix, terminal, prompt, help, dll
+    if bt == "" then
+      last_buf = args.buf
+    end
+  end,
+})
+
+local function diag_buf()
+  if vim.api.nvim_buf_is_valid(last_buf) then
+    return last_buf
+  end
+  return vim.api.nvim_get_current_buf()
+end
+
 return {
   setShowMode = function(str)
     show_mode = str
@@ -203,15 +224,32 @@ return {
   -- diagnostics info
   diagnostics = {
     "diagnostics",
-    sources = { "nvim_diagnostic" },
+    sources = {
+      function()
+        local bufnr = diag_buf()
+        local S = vim.diagnostic.severity
+        local count = vim.diagnostic.count(bufnr) -- Neovim 0.10+
+        return {
+          error = count[S.ERROR] or 0,
+          warn = count[S.WARN] or 0,
+          info = count[S.INFO] or 0,
+          hint = count[S.HINT] or 0,
+        }
+      end,
+    },
     sections = { "error", "warn" },
     on_click = function()
       local qf_open = vim.fn.getqflist({ winid = 0 }).winid ~= 0
       if qf_open then
         vim.cmd("cclose")
-      else
-        vim.diagnostic.setqflist({ open = true })
+        return
       end
+
+      vim.fn.setqflist({}, " ", {
+        title = "Diagnostics (buffer ini)",
+        items = vim.diagnostic.toqflist(vim.diagnostic.get(diag_buf())),
+      })
+      vim.cmd("copen")
     end,
     symbols = {
       error = icons.BoldError .. " ",

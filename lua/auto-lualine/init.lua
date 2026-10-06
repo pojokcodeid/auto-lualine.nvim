@@ -107,6 +107,22 @@ M.setup = function(opts)
     tabline = theme.tabline,
     extensions = theme.extensions,
   })
+
+  vim.api.nvim_create_autocmd({ "BufEnter", "DiagnosticChanged" }, {
+    callback = function(args)
+      if vim.bo[args.buf].buftype ~= "" then
+        return
+      end
+      if vim.fn.getqflist({ winid = 0 }).winid == 0 then
+        return
+      end -- quickfix tertutup
+
+      vim.fn.setqflist({}, "r", {
+        title = "Diagnostics (buffer ini)",
+        items = vim.diagnostic.toqflist(vim.diagnostic.get(args.buf)),
+      })
+    end,
+  })
 end
 
 return M
